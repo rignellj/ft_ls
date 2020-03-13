@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_helpers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrignell <jrignell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:20:05 by jrignell          #+#    #+#             */
-/*   Updated: 2020/02/21 16:58:03 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/13 18:11:06 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_str_free(t_format *f, char *tmp, int i, int j)
 {

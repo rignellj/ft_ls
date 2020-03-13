@@ -1,19 +1,19 @@
-
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jrignell <jere.rignell@aalto.fi>           +#+  +:+       +#+         #
+#    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2019/12/05 15:40:30 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/13 18:18:18 by jrignell         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 NAME = libft.a
-
 FLAGS = -Wall -Wextra -Werror
+CC = gcc
+INC_DIR = includes/
 
 SRCS = ft_isalpha.c \
 	ft_isupper.c \
@@ -90,12 +90,10 @@ SRCS = ft_isalpha.c \
 
 OBJ  = $(patsubst %.c, %.o, $(SRCS))
 
-INC = includes/
-
 all: $(NAME)
 
 $(NAME):
-	@gcc $(FLAGS) -c $(SRCS) -I $(INC)
+	@$(CC) $(FLAGS) -c $(SRCS) -I $(INC_DIR)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
