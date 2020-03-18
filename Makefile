@@ -6,12 +6,12 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/18 16:17:13 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/18 19:34:16 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 INC_DIR := ./includes
@@ -21,6 +21,8 @@ OBJ_DIR := ./obj
 SRC :=	main.c \
 		type_mode.c \
 		form_data.c \
+		group_owner.c \
+		ls_last_modified.c
 		
 
 OBJ :=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -35,7 +37,7 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@make -C printf_srcs/
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) printf_srcs/libftprintf.a
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) printf_srcs/libftprintf.a
 
 clean:
 	@/bin/rm -f $(OBJ)
@@ -49,7 +51,7 @@ fclean: clean
 	@make -C libft/ fclean
 	
 ls: $(OBJ_DIR) $(OBJ)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) printf_srcs/libftprintf.a
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) printf_srcs/libftprintf.a
 
 re: fclean all
 

@@ -6,16 +6,16 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 17:01:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/18 15:37:10 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/18 19:31:39 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-int		main(int ac, char **av)
+int		main(int ac, char *av[])
 {
-	DIR				*dirp;
-	struct dirent	*name;
+//	DIR				*dirp;
+//	struct dirent	*name;
 	struct stat		buf;
 
 /*	if ((dirp = opendir(av[1])) == NULL)
@@ -32,7 +32,7 @@ int		main(int ac, char **av)
 	}
 	closedir(dirp);
 */
-if (!(lstat(av[1], &buf)))
+if (!(lstat(av[1], &buf)) && ac)
 		{
 			ls_form_data(&buf, av);
 		}
