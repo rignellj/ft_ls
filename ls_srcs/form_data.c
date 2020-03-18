@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   form_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/20 12:22:48 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/18 15:25:57 by jrignell         ###   ########.fr       */
+/*   Created: 2020/03/18 14:10:48 by jrignell          #+#    #+#             */
+/*   Updated: 2020/03/18 16:16:40 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_ls.h"
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+void ls_form_data(struct stat *buf, char **av)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (s1[i] != '\0')
-		++i;
-	j = 0;
-	while (s2[j] != '\0' && (size_t)j < n)
-	{
-		s1[i + j] = s2[j];
-		++j;
-	}
-	s1[i + j] = '\0';
-	return (s1);
+	t_f		f;
+	
+	ft_bzero(&f, sizeof(f));
+	f.name = av[1];
+	ls_type_mode(buf, &f);
+//	ls_links(buf, &f);
+	f.links = buf->st_nlink;
+	ft_printf("Name: %s\nType: %c\nModes: %s\nLinks: %d\n", f.name, f.type, f.mode, f.links);
 }

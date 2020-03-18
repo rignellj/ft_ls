@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 17:01:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/17 19:16:16 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/18 15:37:10 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(int ac, char **av)
 */
 if (!(lstat(av[1], &buf)))
 		{
-			ft_printf("Name: %s\n", av[1]);
+			ls_form_data(&buf, av);
 		}
 	return (0);
 }

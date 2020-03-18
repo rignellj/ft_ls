@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/17 17:02:05 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/18 16:17:13 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ INC_DIR := ./includes
 SRC_DIR := ./ls_srcs
 OBJ_DIR := ./obj
 
-SRC := main.c
+SRC :=	main.c \
+		type_mode.c \
+		form_data.c \
+		
 
 OBJ :=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
@@ -44,6 +47,9 @@ fclean: clean
 	@/bin/rm -f $(OBJ)
 	@make -C printf_srcs/ fclean
 	@make -C libft/ fclean
+	
+ls: $(OBJ_DIR) $(OBJ)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) printf_srcs/libftprintf.a
 
 re: fclean all
 
