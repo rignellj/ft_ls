@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:32:13 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/19 20:31:28 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/20 11:49:27 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char		*ft_implode(char **s)
 	{
 		tmp2 = ft_strdup(s[i]);
 		tmp3 = ft_add_space(tmp2);
+		ft_strdel(&tmp2);
 		tmp2 = ft_strjoin(tmp, tmp3);
 		ft_strdel(&tmp);
 		ft_strdel(&tmp3);
@@ -35,7 +36,7 @@ char		*ft_implode(char **s)
 		ft_strdel(&tmp2);
 		i++;
 	}
-	ret = ft_only_space(tmp);
+	ret = ft_strtrim(tmp);
 	ft_strdel(&tmp);
 	return (ret);
 }
