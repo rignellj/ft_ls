@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/23 17:14:54 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/23 22:25:06 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void ls_check_flags(t_ls *flags, char *flag_str)
 {
+	
 	if (ft_strchr(flag_str, 'a'))
 		flags->a = 1;
 	if (ft_strchr(flag_str, 'l'))
@@ -38,7 +39,8 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[])
 	if (flags->not)
 		return ;
 	i = 1;
-	while (av[i][0] == '-')
+	tmp = ft_strdup("\0");
+	while (av[i] && av[i][0] == '-')
 	{
 		if (!(str = ft_strsub(av[i], 1, ft_strlen(av[i]))))
 			ls_error();
