@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrignell <jere.rignell@aalto.fi>           +#+  +:+       +#+        */
+/*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 12:54:43 by jrignell          #+#    #+#             */
-/*   Updated: 2019/10/26 13:34:16 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/22 21:54:53 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(new->content = ft_copy(content, content_size)))
+		if (!(new->content = ft_memalloc(content_size)))
 			return (NULL);
+	//	if (!(new->content = ft_copy(content, content_size)))
+	//		return (NULL);
+		ft_memcpy(new->content, content, content_size);
 		new->content_size = content_size;
 	}
 	new->next = NULL;

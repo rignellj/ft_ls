@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_lstappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 15:15:28 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/21 19:28:14 by jrignell         ###   ########.fr       */
+/*   Created: 2020/03/21 15:22:27 by jrignell          #+#    #+#             */
+/*   Updated: 2020/03/21 19:45:48 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_lstappend(t_list **alst, t_list *new)
 {
-	new->next = (*alst);
-	new->prev = NULL;
-	if ((*alst) != NULL)
-		(*alst)->prev = new;
-	(*alst) = new;
+	t_list	*current;
+
+	if (!alst)
+		return ;
+	new->next = NULL;
+	if ((*alst) == NULL)
+	{
+		new->prev = NULL;
+		(*alst) = new;
+	}
+	else
+	{
+		current = (*alst);
+		while (current->next)
+			current = current->next;
+		current->next = new;
+		new->prev = current;
+	}
 }
