@@ -6,13 +6,13 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 13:41:23 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/18 15:35:52 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/24 19:27:09 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-static void	permissions(t_f *f, char *t_m)
+static void	permissions(t_file *f, char *t_m)
 {
 	int		current;
 
@@ -40,7 +40,7 @@ static void	permissions(t_f *f, char *t_m)
 	}
 }
 
-static void	char_dir_block(t_f *f, char *t_m)
+static void	char_dir_block(t_file *f, char *t_m)
 {
 	if (t_m[0] == '1')
 		f->type = 'p';
@@ -52,7 +52,7 @@ static void	char_dir_block(t_f *f, char *t_m)
 		f->type = 'b';
 }
 
-static void	regular_symbolic_socket(t_f *f, char *t_m)
+static void	regular_symbolic_socket(t_file *f, char *t_m)
 {
 	if (t_m[1] == '0')
 		f->type = '-';
@@ -62,7 +62,7 @@ static void	regular_symbolic_socket(t_f *f, char *t_m)
 		f->type = 's';
 }
 
-void ls_type_mode(struct stat *buf, t_f *f)
+void ls_type_mode(struct stat *buf, t_file *f)
 {
 	char	*type_mode;
 	
@@ -72,4 +72,5 @@ void ls_type_mode(struct stat *buf, t_f *f)
 	else
 		char_dir_block(f, type_mode);
 	permissions(f, type_mode);
+	ft_strdel(&type_mode);
 }
