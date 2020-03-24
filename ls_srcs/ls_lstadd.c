@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 15:42:54 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/23 15:48:54 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/24 19:39:00 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	ls_file_add(t_list **node, char *file_name, struct stat *buf)
 	ls_group_owner(buf, current);
 	ls_last_modified(buf, current);
 	current->exist = 1;
+	// while (1);
 	new = ft_lstnew(current, sizeof(t_file));
 	if (current->name[0] <= 'Z')
 		ft_lstadd(node, new);
