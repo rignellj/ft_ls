@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 19:42:19 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/19 20:28:08 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/20 11:42:24 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*ft_only_space(char *s)
 	if (!s)
 		return (NULL);
 	trim = ft_strtrim(s);
-	
 	if (!(new = ft_strnew(ft_strlen(trim))))
 		return (NULL);
 	i = 0;
