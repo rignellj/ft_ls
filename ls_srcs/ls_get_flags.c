@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/23 22:25:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/24 16:19:50 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,27 @@ static void ls_check_flags(t_ls *flags, char *flag_str)
 		flags->t = 1;
 }
 
-void		ls_get_flags(t_ls *flags, int ac, char *av[])
+void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 {
 	char	*str;
 	char	*tmp;
 	char	*tmp2;
-	size_t	i;
 
 	ft_bzero(flags, sizeof(t_ls));
 	flags->not = ac == 1 ? 1 : 0; // no flags
 	if (flags->not)
 		return ;
-	i = 1;
-	tmp = ft_strdup("\0");
-	while (av[i] && av[i][0] == '-')
+	tmp = ft_strnew(0);
+	while (av[*i] && av[*i][0] == '-')
 	{
-		if (!(str = ft_strsub(av[i], 1, ft_strlen(av[i]))))
+		if (!(str = ft_strsub(av[*i], 1, ft_strlen(av[*i]))))
 			ls_error();
 		tmp2 = ft_strjoin(tmp, str);
 		ft_strdel(&tmp);
 		ft_strdel(&str);
 		tmp = ft_strdup(tmp2);
 		ft_strdel(&tmp2);
-		i++;
+		(*i)++;
 	}
 	ls_check_flags(flags, tmp);
 	ft_strdel(&tmp);

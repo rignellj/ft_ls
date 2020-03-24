@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/18 19:34:16 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/23 17:16:54 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,11 @@ OBJ_DIR := ./obj
 
 SRC :=	main.c \
 		type_mode.c \
-		form_data.c \
 		group_owner.c \
-		ls_last_modified.c
+		ls_last_modified.c \
+		ls_error.c \
+		ls_lstadd.c \
+		ls_get_flags.c
 		
 
 OBJ :=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

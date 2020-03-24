@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/19 20:24:03 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/24 17:26:50 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,8 +88,10 @@ SRCS = ft_isalpha.c \
 	ft_lftoa.c \
 	ft_putnbr_ll_fd.c \
 	ft_implode.c \
-	ft_add_space.c \
-	ft_only_space.c 
+	ft_add_char.c  \
+	ft_only_space.c \
+	ft_lstappend.c \
+	ft_mem_arrfree.c
 
 OBJ  = $(patsubst %.c, %.o, $(SRCS))
 

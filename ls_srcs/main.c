@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 17:01:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/23 22:28:22 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/24 17:45:24 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ void		print_list(t_list *node)
 	print = &ft_printf;
 	while (node)
 	{
-//		((t_file*)node->content)->last_mod = ft_strtrim(((t_file*)node->content)->last_mod);
+		while (node && !((t_file*)node->content)->exist)
+			node = node->next;
+		if (!node)
+			break ;
+		((t_file*)node->content)->last_mod = ft_strtrim(((t_file*)node->content)->last_mod);
 		print("%c%s %-2d%-2s %.7s %4d % s % s\n", ((t_file*)node->content)->type,
 		((t_file*)node->content)->mode, ((t_file*)node->content)->links,
 		((t_file*)node->content)->owner, ((t_file*)node->content)->group,
@@ -63,20 +67,19 @@ static void	get_file_mode(int ac, char *av[])
 {
 	t_list			*node;
 	t_file			*content;
-	int				i;
+	size_t			i;
 	t_ls			flags;
 
 	i = 1;
 	node = NULL;
 	content = NULL;
-	ls_get_flags(&flags, ac, av); //lähetä i:n osoite, jotta voit muokata sitä myöhemmin
+	ls_get_flags(&flags, ac, av, &i);
 	while (ac > 1 && av[i])
 	{
 		ls_lstadd(&node, av[i++]);
 	}
 	print_list(node);//print_exists
-	ft_printf("str: %s\n", "moi");
-	print_flags(&flags);
+//	print_flags(&flags);
 }
 
 int			main(int ac, char *av[])
