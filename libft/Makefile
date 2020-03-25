@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/24 20:07:39 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/25 17:57:21 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,8 @@ SRCS = ft_isalpha.c \
 	ft_only_space.c \
 	ft_lstappend.c \
 	ft_mem_arrfree.c \
-	ft_joindel.c
+	ft_joindel.c \
+	ft_strfree.c
 
 OBJ  = $(patsubst %.c, %.o, $(SRCS))
 

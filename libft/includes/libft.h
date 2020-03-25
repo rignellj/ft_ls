@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/24 20:07:12 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/25 17:57:53 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void				ft_putnbr_fd(long long int n, int fd);
 void				ft_memdel(void **ap);
 void				ft_mem_arrdel(void **tab);
 void				ft_strdel(char **as);
+void				ft_strfee(char const *s1, char const *s2, char const *s3);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));

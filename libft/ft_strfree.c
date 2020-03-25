@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_char.c                                      :+:      :+:    :+:   */
+/*   ft_strfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/19 20:07:09 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/25 17:30:52 by jrignell         ###   ########.fr       */
+/*   Created: 2020/03/25 17:37:13 by jrignell          #+#    #+#             */
+/*   Updated: 2020/03/25 17:59:46 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_add_char(char *s, int c)
+void	ft_strfee(char const *s1, char const *s2, char const *s3)
 {
-	char	*tmp;
-	char	*ret;
-	char	*str;
-
-	str = ft_strnew(1);
-	str[0] = c;
-	tmp = ft_strdup(s);
-	ret = ft_joindel(str, tmp);
-	return (ret);
+	if (s1 != NULL)
+		ft_memdel((void**)&s1);
+	if (s2 != NULL)
+		ft_memdel((void**)&s2);
+	if (s3 != NULL)
+		ft_memdel((void**)&s3);
 }
