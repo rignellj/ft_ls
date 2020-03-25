@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/24 16:19:50 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/25 20:09:08 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 {
 	char	*str;
 	char	*tmp;
-	char	*tmp2;
 
 	ft_bzero(flags, sizeof(t_ls));
 	flags->not = ac == 1 ? 1 : 0; // no flags
@@ -42,11 +41,9 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 	{
 		if (!(str = ft_strsub(av[*i], 1, ft_strlen(av[*i]))))
 			ls_error();
-		tmp2 = ft_strjoin(tmp, str);
-		ft_strdel(&tmp);
+		str = ft_joindel(tmp, str);
+		tmp = ft_strdup(str);
 		ft_strdel(&str);
-		tmp = ft_strdup(tmp2);
-		ft_strdel(&tmp2);
 		(*i)++;
 	}
 	ls_check_flags(flags, tmp);

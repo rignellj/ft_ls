@@ -6,12 +6,19 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 15:42:54 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/24 19:39:00 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/25 21:16:58 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+/*
+static	struct stat *ls_buf(void)
+{
+	struct stat		*file_buf;
 
+	return (file_buf);
+}
+*/
 static void	add_file_not_exist(t_list **node, char *file_name)
 {
 	t_file	*current;
@@ -25,13 +32,14 @@ static void	add_file_not_exist(t_list **node, char *file_name)
 	ft_lstadd(node, new);
 }
 
-static void	ls_file_add(t_list **node, char *file_name, struct stat *buf)
+static void	ls_file_add(t_list **node, char *file_name, struct stat *buf, char *path)
 {
 	t_file	*current;
 	t_list	*new;
 
 	if (!(current = ft_memalloc(sizeof(t_file))))
 		ls_error();
+	current->path = path;
 	current->name = file_name;
 	current->links = buf->st_nlink;
 	current->size = buf->st_size;
@@ -41,19 +49,30 @@ static void	ls_file_add(t_list **node, char *file_name, struct stat *buf)
 	current->exist = 1;
 	// while (1);
 	new = ft_lstnew(current, sizeof(t_file));
-	if (current->name[0] <= 'Z')
+	if (current->name[0] == '.' || (current->name[0] <= 'Z' && current->name[0] >= 'A'))
 		ft_lstadd(node, new);
 	else
 		ft_lstappend(node, new);
 }
 
-static void	ls_dir_add(t_list **node, DIR *dirp, struct stat *buf)
+static void	ls_dir_add(t_list **node, DIR *dirp, char *av)
 {
-	struct dirent	*name;
+	struct dirent	*file_dir_name;
+	struct stat		file_buf;
+	char			*path;
+	char			*file_name;
 	
-	while ((name = readdir(dirp)))
+//	join = ft_strnew(0);
+//	ls_file_add(node, av, buf); // add dir to linked list
+	while ((file_dir_name = readdir(dirp)))
 	{
-		ls_file_add(node, name->d_name, buf);
+		file_name = ft_add_char(file_dir_name->d_name, '/');
+		path = ft_joindel(ft_strdup(av), file_name);
+		lstat(path, &file_buf);
+//		ft_printf("path %s\n", path);
+		// ft_printf("file name: %s\nfile mode: %s\n", file_dir_name->d_name, ft_itoa_base(file_buf.st_mode, 8, 0));
+		ls_file_add(node, file_dir_name->d_name, &file_buf, path);
+		ft_strdel(&path);
 	}
 }
 
@@ -62,15 +81,15 @@ void		ls_lstadd(t_list **node, char *av)
 	struct stat		buf;
 	DIR				*dirp;
 
-	if ((dirp = opendir(av)) != NULL && lstat(av, &buf) == 0)
+	if ((dirp = opendir(av)) != NULL && lstat(av, &buf) == 0) //open directory, buf stores info about directory
 	{
-		ls_dir_add(node, dirp, &buf);
+		ls_dir_add(node, dirp, av);
 		if (closedir(dirp))
 			ls_error();
 	}
-	else if ((dirp = opendir(av)) == NULL && lstat(av, &buf) == 0)
+	else if ((dirp = opendir(av)) == NULL && lstat(av, &buf) == 0) //file
 	{
-		ls_file_add(node, av, &buf);
+		ls_file_add(node, av, &buf, NULL);
 	}
 	else if ((dirp = opendir(av)) == NULL && lstat(av, &buf) == -1)
 		add_file_not_exist(node, av);
