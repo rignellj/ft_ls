@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/24 13:47:26 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/25 21:43:48 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_f
 	char		*name;
 	char		*mode;
 	char		*owner;
+	char		*path;
 	char		*group;
 	char		*last_mod;
 	t_list		*head;
@@ -73,7 +74,7 @@ typedef struct	s_ls
 ********************************************************************************
 */
 
-
+void			ls_print_content(t_list *node, t_ls *flags);
 void			ls_type_mode(struct stat *buf, t_file *f);
 void			ls_group_owner(struct stat *buf, t_file *f);
 void			ls_last_modified(struct stat *buf, t_file *f);

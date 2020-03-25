@@ -6,43 +6,36 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 17:01:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/24 17:45:24 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/25 21:45:24 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 /*
-void		print_exists(void *n)
-{
-	ft_printf("Exists: %d\n", *(int*)n);
-}
-*/
-
-void		print_flags(t_ls *flags)
-{
-	ft_printf("a: %d\n", flags->a);
-	ft_printf("l: %d\n", flags->l);
-	ft_printf("r: %d\n", flags->r);
-	ft_printf("R: %d\n", flags->rec);
-	ft_printf("t: %d\n", flags->t);
-}
-
-void		print_list(t_list *node)
-{
-	int		(*print)(const char*, ...);
-
-	print = &ft_printf;
-	while (node)
+	void		print_exists(void *n)
 	{
-		while (node && !((t_file*)node->content)->exist)
+		ft_printf("Exists: %d\n", *(int*)n);
+	}
+*/
+/*
+	void		print_flags(t_ls *flags)
+	{
+		ft_printf("a: %d\n", flags->a);
+		ft_printf("l: %d\n", flags->l);
+		ft_printf("r: %d\n", flags->r);
+		ft_printf("R: %d\n", flags->rec);
+		ft_printf("t: %d\n", flags->t);
+	}
+*/
+static void	print_list(t_list *node, t_ls *flags)
+{
+	while (node && !((t_file*)node->content)->exist)
 			node = node->next;
 		if (!node)
-			break ;
-		((t_file*)node->content)->last_mod = ft_strtrim(((t_file*)node->content)->last_mod);
-		print("%c%s %-2d%-2s %.7s %4d % s % s\n", ((t_file*)node->content)->type,
-		((t_file*)node->content)->mode, ((t_file*)node->content)->links,
-		((t_file*)node->content)->owner, ((t_file*)node->content)->group,
-		((t_file*)node->content)->size, ((t_file*)node->content)->last_mod, ((t_file*)node->content)->name);
+			return ;
+	while (node)
+	{
+		ls_print_content(node, flags);
 		node = node->next;
 /*		
 		void(*fptr)(void*)
@@ -61,6 +54,7 @@ void		print_list(t_list *node)
 		print("last modified: %s\n\n", );
 */		
 	}
+	ft_putchar('\n');
 }
 
 static void	get_file_mode(int ac, char *av[])
@@ -76,9 +70,14 @@ static void	get_file_mode(int ac, char *av[])
 	ls_get_flags(&flags, ac, av, &i);
 	while (ac > 1 && av[i])
 	{
+		// ft_printf("i: %d\n", i);
 		ls_lstadd(&node, av[i++]);
 	}
-	print_list(node);//print_exists
+	if (ac == 1)
+	{
+		ls_lstadd(&node, ".");
+	}
+	print_list(node, &flags);//print_exists
 //	print_flags(&flags);
 }
 
