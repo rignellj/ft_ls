@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrignell <jrignell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 13:53:12 by jrignell          #+#    #+#             */
-/*   Updated: 2020/01/31 11:52:09 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/26 12:35:56 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	ft_putstr(char *s)
 {
 	size_t	i;
 
+	if (!s)
+	{
+		write(1, "(null)\n", 7);
+		return ;
+	}
 	i = 0;
 	while (s[i])
 		i++;
