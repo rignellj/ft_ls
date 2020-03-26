@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/25 21:43:48 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/26 20:17:03 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void			ls_error(void);
 */
 
 void			ls_lstadd(t_list **node, char *av);
+t_list			*ft_mergesort(t_list *node);
 
 #endif

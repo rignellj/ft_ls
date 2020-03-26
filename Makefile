@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/25 21:44:12 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/26 20:17:55 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC :=	main.c \
 		ls_error.c \
 		ls_lstadd.c \
 		ls_get_flags.c \
-		ls_print_content.c
+		ls_print_content.c \
+		ft_mergesort.c
 		
 
 OBJ :=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
