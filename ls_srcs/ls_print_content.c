@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 21:41:11 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/25 21:45:30 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/26 21:26:40 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	ls_print_content(t_list *node, t_ls *flags)
 	}
 	else if (flags->not)
 		print("%s   ", ((t_file*)node->content)->name);
+	// ft_printf("Flags->not %d\n", flags->not);
 }

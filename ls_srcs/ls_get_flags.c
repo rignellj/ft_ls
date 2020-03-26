@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/25 20:09:08 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/26 21:24:09 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 	char	*tmp;
 
 	ft_bzero(flags, sizeof(t_ls));
-	flags->not = ac == 1 ? 1 : 0; // no flags
+	flags->not = ac != 1 ? 1 : 0; // no flags
 	if (flags->not)
 		return ;
 	tmp = ft_strnew(0);
