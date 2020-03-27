@@ -6,19 +6,12 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 15:42:54 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/25 21:16:58 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/27 13:48:32 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
-/*
-static	struct stat *ls_buf(void)
-{
-	struct stat		*file_buf;
 
-	return (file_buf);
-}
-*/
 static void	add_file_not_exist(t_list **node, char *file_name)
 {
 	t_file	*current;
@@ -34,8 +27,9 @@ static void	add_file_not_exist(t_list **node, char *file_name)
 
 static void	ls_file_add(t_list **node, char *file_name, struct stat *buf, char *path)
 {
-	t_file	*current;
-	t_list	*new;
+	t_file			*current;
+	t_list			*new;
+	static size_t	num_of_elem = 0;
 
 	if (!(current = ft_memalloc(sizeof(t_file))))
 		ls_error();
@@ -43,6 +37,7 @@ static void	ls_file_add(t_list **node, char *file_name, struct stat *buf, char *
 	current->name = file_name;
 	current->links = buf->st_nlink;
 	current->size = buf->st_size;
+	current->logical_len += num_of_elem;
 	ls_type_mode(buf, current);
 	ls_group_owner(buf, current);
 	ls_last_modified(buf, current);

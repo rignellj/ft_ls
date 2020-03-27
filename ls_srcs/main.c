@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 17:01:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/26 21:06:40 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/27 17:16:30 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	get_file_mode(int ac, char *av[])
 	node = NULL;
 	content = NULL;
 	ls_get_flags(&flags, ac, av, &i);
+	ls_get_files(&flags, ls_print_not_existing_f(av, &i));
 	while (ac > 1 && av[i])
 	{
 		// ft_printf("i: %d\n", i);
@@ -77,7 +78,7 @@ static void	get_file_mode(int ac, char *av[])
 	{
 		ls_lstadd(&node, ".");
 	}
-	print_list(node, &flags);
+	// int mergesort(void *__base, size_t __nel, size_t __width, int (*_Nonnull __compar)(const void *, const void *)
 	ft_mergesort(node);
 	print_list(node, &flags);//print_exists
 //	print_flags(&flags);
@@ -86,6 +87,5 @@ static void	get_file_mode(int ac, char *av[])
 int			main(int ac, char *av[])
 {
 	get_file_mode(ac, av);
-//	ft_printf("i: %d\n", ft_strcmp(".", ".."));
 	return (0);
 }
