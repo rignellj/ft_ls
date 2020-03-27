@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/26 20:17:03 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/27 20:34:07 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,13 @@ typedef struct	s_ls
 */
 
 void			ls_print_content(t_list *node, t_ls *flags);
+char			*ls_print_not_existing_f(char *av[], size_t *i);
+char			**ls_bubblesort(char **array);
 void			ls_type_mode(struct stat *buf, t_file *f);
 void			ls_group_owner(struct stat *buf, t_file *f);
 void			ls_last_modified(struct stat *buf, t_file *f);
 void			ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i);
+void			ls_get_files(t_ls *flags, char *files);
 void			ls_error(void);
 
 /*

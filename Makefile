@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/26 20:17:55 by jrignell         ###   ########.fr        #
+#    Updated: 2020/03/27 19:17:19 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,16 @@ SRC_DIR := ./ls_srcs
 OBJ_DIR := ./obj
 
 SRC :=	main.c \
-		type_mode.c \
-		group_owner.c \
+		ls_type_mode.c \
+		ls_group_owner.c \
 		ls_last_modified.c \
 		ls_error.c \
 		ls_lstadd.c \
 		ls_get_flags.c \
 		ls_print_content.c \
-		ft_mergesort.c
+		ft_mergesort.c \
+		ls_print_not_existing_f.c \
+		ls_get_files.c
 		
 
 OBJ :=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

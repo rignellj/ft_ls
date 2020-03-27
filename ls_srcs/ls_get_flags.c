@@ -6,15 +6,14 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/26 21:24:09 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/27 14:22:29 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-static void ls_check_flags(t_ls *flags, char *flag_str)
+static void	ls_check_flags(t_ls *flags, char *flag_str)
 {
-	
 	if (ft_strchr(flag_str, 'a'))
 		flags->a = 1;
 	if (ft_strchr(flag_str, 'l'))
@@ -33,9 +32,6 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 	char	*tmp;
 
 	ft_bzero(flags, sizeof(t_ls));
-	flags->not = ac != 1 ? 1 : 0; // no flags
-	if (flags->not)
-		return ;
 	tmp = ft_strnew(0);
 	while (av[*i] && av[*i][0] == '-')
 	{
@@ -46,6 +42,7 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 		ft_strdel(&str);
 		(*i)++;
 	}
-	ls_check_flags(flags, tmp);
+	if ((flags->not = ac == 1 ? 1 : 0))
+		ls_check_flags(flags, tmp);
 	ft_strdel(&tmp);
 }
