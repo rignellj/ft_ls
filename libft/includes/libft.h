@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/25 17:57:53 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/03/27 20:52:51 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ char				*ft_itoa_base_u(unsigned long long int value,
 */
 
 char				**ft_strsplit(char const *s, char c);
+char				**ft_array_push(char const **old, char const *append);
+char				**ft_arraynew(size_t size);
 
 /*
 ********************************************************************************
@@ -167,6 +169,7 @@ void				ft_print_hex_ull(unsigned long long nbr, int upper);
 void				ft_putnbr_ull_fd(unsigned long long int n, int fd);
 void				ft_putnbr_ll_fd(long long n, int fd);
 void				ft_bzero(void *s, size_t n);
+void				ft_arrayzero(void **s, size_t n);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr(char *s);
@@ -182,6 +185,7 @@ void				ft_strfee(char const *s1, char const *s2, char const *s3);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+void				ft_swap(void **first, void **second);
 
 /*
 ********************************************************************************
@@ -197,6 +201,16 @@ void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memalloc(size_t size);
+
+/*
+********************************************************************************
+**                                                                            **
+**                         VOID ** FUNCTIONS                                   **
+**                                                                            **
+********************************************************************************
+*/
+
+void				**ft_mem_arraymalloc(size_t size);
 
 /*
 ********************************************************************************
