@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 19:10:17 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/27 13:57:43 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/10 14:35:02 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ static t_list	*merge(t_list *node, t_list *middle)
 		return (middle);
 	if (!middle)
 		return (node);
+	// ft_printf("%s %s\n", ((t_file*)node->content)->name, ((t_file*)middle->content)->name);
 	if (ft_strcmp(((t_file*)node->content)->name, ((t_file*)middle->content)->name) < 0)
 	{
-		// ft_printf("%s %s\n", ((t_file*)node->content)->name, ((t_file*)middle->content)->name);
+		//  ft_printf("%s %s\n", ((t_file*)node->content)->name, ((t_file*)middle->content)->name);
 		node->next = merge(node->next, middle);
 		node->next->prev = node;
 		node->prev = NULL;
@@ -53,7 +54,7 @@ static t_list	*split_list(t_list *node)
 	return (middle);
 }
 
-t_list			*ft_mergesort(t_list *node) //void * return type
+t_list			*ft_mergesort(t_list *node)
 {
 	t_list	*middle;
 
@@ -62,5 +63,5 @@ t_list			*ft_mergesort(t_list *node) //void * return type
 	middle = split_list(node);
 	node = ft_mergesort(node);
 	middle = ft_mergesort(middle);
-	return merge(node, middle);
+	return (merge(node, middle));
 }
