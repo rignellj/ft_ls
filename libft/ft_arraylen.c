@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_arraylen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 12:54:43 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/08 18:34:24 by jrignell         ###   ########.fr       */
+/*   Created: 2020/04/02 14:26:20 by jrignell          #+#    #+#             */
+/*   Updated: 2020/04/02 14:39:01 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+size_t	ft_arraylen(const char **arr)
 {
-	t_list	*new;
+	size_t	i;
 
-	if (!(new = (t_list*)ft_memalloc(sizeof(t_list))))
-		return (NULL);
-	if (!content)
-	{
-		new->content = NULL;
-		new->content_size = 0;
-	}
-	else
-	{
-		if (!(new->content = ft_memalloc(content_size)))
-			return (NULL);
-		ft_memcpy(new->content, content, content_size);
-		new->content_size = content_size;
-	}
-	new->next = NULL;
-	return (new);
+	i = 0;
+	
+	while (arr[i])
+		i++;
+	return (i);
 }

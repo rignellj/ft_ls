@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/27 20:53:19 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/02 14:30:25 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,9 @@ SRCS = ft_isalpha.c \
 	ft_mem_arraymalloc.c \
 	ft_array_push.c \
 	ft_arraynew.c \
-	ft_arrayzero.c
+	ft_arrayzero.c \
+	ft_qsort.c \
+	ft_arraylen.c
 
 OBJ  = $(patsubst %.c, %.o, $(SRCS))
 
