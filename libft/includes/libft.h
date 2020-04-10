@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/27 20:52:51 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/04 16:53:02 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi_base(const char *str, int str_base);
 
+size_t				ft_arraylen(const char **arr);
 size_t				ft_strlen(const char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 
@@ -151,7 +152,7 @@ char				*ft_itoa_base_u(unsigned long long int value,
 */
 
 char				**ft_strsplit(char const *s, char c);
-char				**ft_array_push(char const **old, char const *append);
+char				**ft_array_push(char **old, char const *append);
 char				**ft_arraynew(size_t size);
 
 /*
@@ -180,6 +181,7 @@ void				ft_putnbr(long long int n);
 void				ft_putnbr_fd(long long int n, int fd);
 void				ft_memdel(void **ap);
 void				ft_mem_arrdel(void **tab);
+void				ft_qsort(char **str, int first, int last, int (*cmp)(void*, void*));
 void				ft_strdel(char **as);
 void				ft_strfee(char const *s1, char const *s2, char const *s3);
 void				ft_strclr(char *s);
