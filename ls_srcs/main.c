@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 17:01:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/27 17:16:30 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:44:44 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,61 +27,18 @@
 		ft_printf("t: %d\n", flags->t);
 	}
 */
-static void	print_list(t_list *node, t_ls *flags)
-{
-	while (node && !((t_file*)node->content)->exist)
-			node = node->next;
-		if (!node)
-			return ;
-	while (node)
-	{
-		ls_print_content(node, flags);
-		node = node->next;
-/*		
-		void(*fptr)(void*)
-		t_file	*current;
-		t_list	*cur;
-		cur = node;
-		current = node->content;
-		(*fptr)(node->content);
-		print("name: %s\n", );
-		print("exist: %d\n", ((t_file*)node->content)->exist);
-		print("links: %d\n", );
-		print("size: %d\n", ;
-		print("mode: %s\n", );
-		print("owner: %s\n", ;
-		print("group: %s\n", );
-		print("last modified: %s\n\n", );
-*/		
-	}
-	ft_putchar('\n');
-}
 
 static void	get_file_mode(int ac, char *av[])
 {
 	t_list			*node;
-	t_file			*content;
 	size_t			i;
 	t_ls			flags;
 
 	i = 1;
 	node = NULL;
-	content = NULL;
-	ls_get_flags(&flags, ac, av, &i);
-	ls_get_files(&flags, ls_print_not_existing_f(av, &i));
-	while (ac > 1 && av[i])
-	{
-		// ft_printf("i: %d\n", i);
-		ls_lstadd(&node, av[i++]);
-	}
-	if (ac == 1)
-	{
-		ls_lstadd(&node, ".");
-	}
-	// int mergesort(void *__base, size_t __nel, size_t __width, int (*_Nonnull __compar)(const void *, const void *)
-	ft_mergesort(node);
-	print_list(node, &flags);//print_exists
-//	print_flags(&flags);
+	ac = 0;
+	ls_get_flags(&flags, av, &i);
+	av[i] ? ls_open_directories(&flags, ls_print_not_existing_f(av, &i, &flags, &node), NULL) : ls_print_current(&flags);
 }
 
 int			main(int ac, char *av[])
