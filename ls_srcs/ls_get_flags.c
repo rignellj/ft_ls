@@ -6,11 +6,17 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/27 14:22:29 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/06 12:57:14 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+static void	put_functions_to_array(t_ls *flags)
+{
+	flags->fptr[0] = &compare_low_high;
+	flags->fptr[1] = &compare_high_low;
+}
 
 static void	ls_check_flags(t_ls *flags, char *flag_str)
 {
@@ -26,13 +32,15 @@ static void	ls_check_flags(t_ls *flags, char *flag_str)
 		flags->t = 1;
 }
 
-void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
+void		ls_get_flags(t_ls *flags, char *av[], size_t *i)
 {
 	char	*str;
 	char	*tmp;
+	int		flag;
 
 	ft_bzero(flags, sizeof(t_ls));
 	tmp = ft_strnew(0);
+	flag = 0;
 	while (av[*i] && av[*i][0] == '-')
 	{
 		if (!(str = ft_strsub(av[*i], 1, ft_strlen(av[*i]))))
@@ -41,8 +49,10 @@ void		ls_get_flags(t_ls *flags, int ac, char *av[], size_t *i)
 		tmp = ft_strdup(str);
 		ft_strdel(&str);
 		(*i)++;
+		flag = 1;
 	}
-	if ((flags->not = ac == 1 ? 1 : 0))
+	if (flag)
 		ls_check_flags(flags, tmp);
+	put_functions_to_array(flags);
 	ft_strdel(&tmp);
 }
