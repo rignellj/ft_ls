@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/03/27 19:17:19 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/10 18:42:26 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,15 @@ SRC :=	main.c \
 		ls_print_content.c \
 		ft_mergesort.c \
 		ls_print_not_existing_f.c \
-		ls_get_files.c
+		ls_open_directories.c \
+		ls_compare.c \
+		print_not_existing_files.c \
+		ls_bubblesort.c \
+		ls_del_current.c \
+		ls_lstadd_linkedlist.c \
+		print_current.c \
+		ls_print_current.c \
+		ls_find.c
 		
 
 OBJ :=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
