@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 16:32:49 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/13 18:11:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/03 17:04:53 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int		diouxf(t_format *f, va_list ap)
 		return (ft_parse_csp_percent(f, ap));
 	else if (f->format == 'b')
 		return (printf_bonus(f, va_arg(ap, unsigned long long)));
+	else if (f->format == 'a')
+		return (print_array(f, va_arg(ap, char**)));
 	return (0);
 }

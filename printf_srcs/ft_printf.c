@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:57:34 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/13 18:11:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/03 17:05:54 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char		ft_check_type(char c)
 	int			i;
 	char		d;
 
-	array = "cspdiouxXfb%";
+	array = "cspdiouxXfba%";
 	i = 0;
 	while (array[i] != '\0')
 	{

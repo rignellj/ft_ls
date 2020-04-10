@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 15:33:56 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/13 18:12:08 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/03 17:24:27 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void			ft_set_struct_null(t_format **f);
 
 int				printf_bonus(t_format *f, unsigned long long print);
 void			define_asterisk(t_format *f, va_list ap);
+int				print_array(t_format *f, char **array);
 
 #endif
