@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 14:30:49 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/10 17:43:16 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 16:39:47 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,20 @@ static int	ls_lstat(char *av)
 		return (0);
 }
 
-void	ls_print_files_del(t_list **node, t_ls *f, int i)
+static void	ls_print_not_existing_files(char **array)
+{
+	int		i;
+
+	i = 0;
+	while (array[i])
+	{
+		ft_printf("ft_ls: %s: No such file or directory\n", array[i]);
+		i++;
+	}
+	ft_mem_arrdel((void**)array);
+}
+
+void		ls_print_files_del(t_list **node, t_ls *f, int i)
 {
 	t_list	*current;
 
@@ -31,20 +44,21 @@ void	ls_print_files_del(t_list **node, t_ls *f, int i)
 	{
 		if (i && current->content && ((t_file*)current->content)->type != 'd')
 		{
-			ft_printf("%s ", ((t_file*)current->content)->name);
+			ls_print_content(current, f);
 			ls_del_current(node, current, f);
 		}
 		else if (!i && current->content)
 		{
-			ft_printf("%s ", ((t_file*)current->content)->name);
-			ls_del_current(node, current, f);
+			ls_print_content(current, f);
+			f->rec && ((t_file*)current->content)->type == 'd' ? 0
+			: ls_del_current(node, current, f);
 		}
 		current = current->next;
 	}
-	ft_putchar('\n');
+	!i ? ft_putchar('\n') : 0;
 }
 
-t_list		**ls_print_not_existing_f(char *av[], size_t *i, t_ls *flags, t_list **ret_dirs)
+t_list			**ls_print_not_existing_f(char *av[], size_t *i, t_ls *flags, t_list **ret_dirs)
 {
 	char	**not_exist;
 	size_t	j;
@@ -59,9 +73,9 @@ t_list		**ls_print_not_existing_f(char *av[], size_t *i, t_ls *flags, t_list **r
 			ls_lstadd_linkedlist(ret_dirs, flags, av[j], 1);
 		j++;
 	}
-	ls_bubblesort(not_exist);
+	ft_bubblesort(not_exist);
 	ls_print_not_existing_files(not_exist);
-	ft_mergesort(*ret_dirs);
+	ft_mergesort(*ret_dirs, flags->fptr[0]);
 	*ret_dirs = ls_find_first(*ret_dirs);
 	ls_print_files_del(ret_dirs, flags, 1);
 	return (ret_dirs);
