@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_print_current_node.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 15:24:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 13:55:53 by jrignell         ###   ########.fr       */
+/*   Created: 2020/04/10 12:39:30 by jrignell          #+#    #+#             */
+/*   Updated: 2020/04/12 15:19:18 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include "../includes/ft_ls.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_print_current_node(t_list **node)
 {
 	t_list	*current;
-	t_list	*first;
 
-	if (!lst)
-		return (NULL);
-	first = f(lst);
-	current = first;
-	while (lst->next)
+	current = *node;
+	ft_putchar('\n');
+	while (current)
 	{
-		lst = lst->next;
-		current->next = f(lst);
-		if (!(current->next))
+		if (current->content)
 		{
-			free(current->next);
-			return (NULL);
+			ft_printf("Previous %p\n", current->prev);
+			ft_printf("Name of current %s, current address %p\n",
+			((t_file*)current->content)->name, current);
+			ft_printf("Next %p\n", current->next);
+			ft_printf("-----------------\n");
 		}
 		current = current->next;
 	}
-	return (first);
+	ft_putchar('\n');
 }

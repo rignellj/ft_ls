@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lftoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrignell <jrignell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:27:09 by jrignell          #+#    #+#             */
-/*   Updated: 2020/02/21 17:13:01 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 16:01:23 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ static char	*prec_zero(char *dec, char *tmp, long long *num, int minus)
 
 char		*ft_lftoa(long double value, size_t precision)
 {
-	char		*d_str;
 	char		*dec;
 	long long	num;
 	int			minus;
@@ -107,13 +106,7 @@ char		*ft_lftoa(long double value, size_t precision)
 	(dec[0] == ':') ? (add_one_or_int(dec, &num, minus, 1)) : dec[0];
 	if (precision == 0)
 		return (prec_zero(dec, tmp, &num, minus));
-	tmp = ft_itoa_base(num, 10, 0);
-	d_str = ft_strjoin(tmp, ".");
-	ft_strdel(&tmp);
-	tmp = num == 0 && minus ? ft_strjoin("-", d_str) : ft_strdup(d_str);
-	ft_strdel(&d_str);
-	d_str = ft_strjoin(tmp, dec);
-	ft_strdel(&tmp);
-	ft_strdel(&dec);
-	return (d_str);
+	tmp = ft_joindel(ft_itoa_base(num, 10, 0), ft_strdup("."));
+	tmp = num == 0 && minus ? ft_joindel(ft_strdup("-"), tmp) : tmp;
+	return (ft_joindel(tmp, dec));
 }

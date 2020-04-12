@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrignell <jere.rignell@aalto.fi>           +#+  +:+       +#+        */
+/*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:04:52 by jrignell          #+#    #+#             */
-/*   Updated: 2019/11/07 13:49:38 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 14:43:27 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static size_t	count_words(const char *s1, char c)
 {

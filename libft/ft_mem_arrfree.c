@@ -6,11 +6,12 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 17:05:00 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/24 19:37:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 14:40:53 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 void	ft_mem_arrdel(void **tab)
 {

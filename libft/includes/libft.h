@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/04 16:53:02 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:46:41 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 ********************************************************************************
 */
 
-# include <stdlib.h>
 # include <unistd.h>
+# include "../printf_srcs/includes/ft_printf.h"
 
 /*
 ********************************************************************************
@@ -163,14 +163,9 @@ char				**ft_arraynew(size_t size);
 ********************************************************************************
 */
 
-void				ft_print_hex(long long int nbr, int upper);
-void				ft_print_octal(long long nbr);
-void				ft_print_octal_ull(unsigned long long nbr);
-void				ft_print_hex_ull(unsigned long long nbr, int upper);
 void				ft_putnbr_ull_fd(unsigned long long int n, int fd);
 void				ft_putnbr_ll_fd(long long n, int fd);
 void				ft_bzero(void *s, size_t n);
-void				ft_arrayzero(void **s, size_t n);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr(char *s);
@@ -181,7 +176,6 @@ void				ft_putnbr(long long int n);
 void				ft_putnbr_fd(long long int n, int fd);
 void				ft_memdel(void **ap);
 void				ft_mem_arrdel(void **tab);
-void				ft_qsort(char **str, int first, int last, int (*cmp)(void*, void*));
 void				ft_strdel(char **as);
 void				ft_strfee(char const *s1, char const *s2, char const *s3);
 void				ft_strclr(char *s);
@@ -207,16 +201,6 @@ void				*ft_memalloc(size_t size);
 /*
 ********************************************************************************
 **                                                                            **
-**                         VOID ** FUNCTIONS                                   **
-**                                                                            **
-********************************************************************************
-*/
-
-void				**ft_mem_arraymalloc(size_t size);
-
-/*
-********************************************************************************
-**                                                                            **
 **                         LIST FUNCTIONS                                     **
 **                                                                            **
 ********************************************************************************
@@ -230,7 +214,18 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstappend(t_list **alst, t_list *new);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void				ft_print_current_node(t_list **node);
 
-void				*ft_copy(void const *content, size_t content_size);
+/*
+********************************************************************************
+**                                                                            **
+**                         SORT FUNCTIONS                                     **
+**                                                                            **
+********************************************************************************
+*/
+
+t_list				*ft_mergesort(t_list *node, int (*cmp)(void *, void *));
+void				ft_qsort(char **str, int first, int last, int (*cmp)(void*, void*));
+void				ft_bubblesort(char **array);
 
 #endif

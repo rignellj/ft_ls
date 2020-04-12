@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrignell <jrignell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:15:46 by jrignell          #+#    #+#             */
-/*   Updated: 2020/01/28 21:00:09 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 14:43:33 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		}
 		++i;
 	}
-	return (0);
+	return (NULL);
 }

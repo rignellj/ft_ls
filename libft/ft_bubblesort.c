@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraynew.c                                      :+:      :+:    :+:   */
+/*   ft_bubblesort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/27 19:51:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:35:49 by jrignell         ###   ########.fr       */
+/*   Created: 2020/04/06 13:33:08 by jrignell          #+#    #+#             */
+/*   Updated: 2020/04/12 15:24:47 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	**ft_arraynew(size_t size)
+void		ft_bubblesort(char **array)
 {
-	char	**new;
-	size_t	i;
+	int		flag;
+	int		i;
 
-	if (!(new = (char**)malloc(sizeof(char*) * size + 1)))
-		return (NULL);
-	i = 0;
-	while (i < size)
-		new[i++] = NULL;
-	new[i] = NULL;
-	return (new);
+	if (!array)
+		return ;
+	flag = 1;
+	while (flag)
+	{
+		flag = 0;
+		i = 0;
+		while (array[i] && array[i + 1])
+		{
+			if (ft_strcmp(array[i], array[i + 1]) > 0)
+			{
+				ft_swap((void**)&array[i], (void**)&array[i + 1]);
+				flag = 1;
+			}
+			i++;
+		}
+	}
 }

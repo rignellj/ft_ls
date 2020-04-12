@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2020/04/02 14:30:25 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/12 15:25:52 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,17 +71,12 @@ SRCS = ft_isalpha.c \
 	ft_strsplit.c \
 	ft_itoa.c \
 	ft_lstnew.c \
-	ft_copy.c \
 	ft_lstdel.c \
 	ft_lstdelone.c \
 	ft_lstadd.c \
 	ft_lstiter.c \
 	get_next_line.c \
-	ft_print_hex.c \
-	ft_print_octal.c \
 	ft_putnbr_ull_fb.c \
-	ft_print_hex_ull.c \
-	ft_print_octal_ull.c \
 	ft_atoi_base.c \
 	ft_itoa_base.c \
 	ft_itoa_base_u.c \
@@ -95,12 +90,13 @@ SRCS = ft_isalpha.c \
 	ft_joindel.c \
 	ft_strfree.c \
 	ft_swap.c \
-	ft_mem_arraymalloc.c \
 	ft_array_push.c \
 	ft_arraynew.c \
-	ft_arrayzero.c \
 	ft_qsort.c \
-	ft_arraylen.c
+	ft_arraylen.c \
+	ft_print_current_node.c \
+	ft_mergesort.c \
+	ft_bubblesort.c
 
 OBJ  = $(patsubst %.c, %.o, $(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 11:43:51 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/18 15:21:09 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 14:41:38 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strcat(char *s1, const char *s2)
 	size_t	i;
 	size_t	j;
 
+	if (!s1)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s1[i] != '\0')
