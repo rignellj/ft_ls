@@ -6,29 +6,26 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 21:41:11 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/07 15:31:00 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/12 16:18:05 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	ls_print_content(t_list **node, t_ls *flags)
+void	ls_print_content(t_list *current, t_ls *flags)
 {
 	int		(*print)(const char*, ...);
 
 	print = &ft_printf;
-	while (node)
+	if (flags->l)
 	{
-		if (flags->l)
-		{
-			print("%c%s %-4d %3s %.7s %6d % s % s\n", ((t_file*)(*node)->content)->type,
-			((t_file*)(*node)->content)->mode, ((t_file*)(*node)->content)->links,
-			((t_file*)(*node)->content)->owner, ((t_file*)(*node)->content)->group,
-			((t_file*)(*node)->content)->size, ((t_file*)(*node)->content)->last_mod, ((t_file*)(*node)->content)->name);
-		}
-		else
-			print("%s   ", ((t_file*)(*node)->content)->name);
-		node = &(*node)->next;
+		print("%c%s %-4d %3s %.7s %6d % s % s\n", ((t_file*)(current)->content)->type,
+		((t_file*)(current)->content)->mode, ((t_file*)(current)->content)->links,
+		((t_file*)(current)->content)->owner, ((t_file*)(current)->content)->group,
+		((t_file*)(current)->content)->size, ((t_file*)(current)->content)->last_mod, ((t_file*)(current)->content)->name);
 	}
-	//memdel
+	else
+		print("%s   ", ((t_file*)(current)->content)->name);
+	if (!current->next)
+		ft_putchar('\n');
 }
