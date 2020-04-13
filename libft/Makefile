@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2020/04/12 15:25:52 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/13 16:05:07 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,8 @@ SRCS = ft_isalpha.c \
 	ft_arraylen.c \
 	ft_print_current_node.c \
 	ft_mergesort.c \
-	ft_bubblesort.c
+	ft_bubblesort.c \
+	ft_numlen.c
 
 OBJ  = $(patsubst %.c, %.o, $(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 15:46:41 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/13 16:02:27 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ typedef enum		e_bool
 **                                                                            **
 ********************************************************************************
 */
+
+unsigned short		ft_numlen(long long num);
 
 int					ft_isalpha(int c);
 int					ft_islower(int c);
