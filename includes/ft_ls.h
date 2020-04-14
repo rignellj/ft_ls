@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 16:20:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 12:59:23 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ typedef struct	s_ls
 	int			rec;
 	int			t;
 	int			ac;
+	int			links_len;
+	int			owner_len;
+	int			group_len;
+	int			size_len;
 	t_list		*first;
 	int			(*fptr[2])(void*, void*);
 }				t_ls;
