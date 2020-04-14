@@ -6,19 +6,23 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 18:03:03 by jrignell          #+#    #+#             */
-/*   Updated: 2020/03/27 19:17:49 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 13:12:30 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void ls_group_owner(struct stat *buf, t_file *f)
+void ls_group_owner(struct stat *buf, t_file *f, t_ls *flags)
 {
 	struct passwd	*uid;
 	struct group	*gid;
 	
 	uid = getpwuid(buf->st_uid);
-	f->owner = uid->pw_name;
+	if (flags->owner_len < ((int)ft_strlen((f->owner = uid->pw_name))))
+		flags->owner_len = (int)ft_strlen(uid->pw_name);
+	// f->owner = uid->pw_name;
 	gid = getgrgid(buf->st_gid);
-	f->group = gid->gr_name;
+	if (flags->group_len < ((int)ft_strlen((f->group = gid->gr_name))))
+		flags->group_len = (int)ft_strlen(gid->gr_name);
+	// f->group = gid->gr_name;
 }

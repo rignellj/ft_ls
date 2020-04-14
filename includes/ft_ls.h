@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 13:00:45 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 13:09:57 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void			ls_error(void);
 */
 
 void			ls_type_mode(struct stat *buf, t_file *f);
-void			ls_group_owner(struct stat *buf, t_file *f);
+void			ls_group_owner(struct stat *buf, t_file *f, t_ls *flags);
 void			ls_last_modified(struct stat *buf, t_file *f);
 void			ls_get_flags(t_ls *flags, char *av[], size_t *i, int ac);
 

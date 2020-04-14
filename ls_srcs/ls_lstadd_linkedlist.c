@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 14:25:23 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 13:01:55 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:04:50 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void		ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i)
 	{
 		if (f->links_len < (ft_numlen(((t_file*)new_node->content)->links = buf.st_nlink)))
 			f->links_len = ft_numlen(buf.st_nlink);
-		((t_file*)new_node->content)->size = buf.st_size;
-		ls_group_owner(&buf, new_node->content);
+		if (f->size_len < (ft_numlen(((t_file*)new_node->content)->size = buf.st_size)))
+			f->size_len = ft_numlen(buf.st_size);
+		// ((t_file*)new_node->content)->size = buf.st_size;
+		ls_group_owner(&buf, new_node->content, f);
 		ls_last_modified(&buf, new_node->content);
 	}
 	if (f->t)
