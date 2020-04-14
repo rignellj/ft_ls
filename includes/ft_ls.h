@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 12:59:23 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 13:00:45 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ void			ls_open_directories(t_ls *flags, t_list **node, char *dir);
 void			ls_read_directories(t_list **node, t_ls *flags, DIR *dirp,
 				char *path);
 void			ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i);
-void			ls_lstadd(t_list **node, char *av);
-void			ls_file_add(t_list **node, char *file_name, struct stat *buf, char *path);
 void			ls_del_current(t_list **node, t_list *current, t_ls *flags);
 void			ls_lstdel(t_list **node, t_ls *flags);
 void			ls_error(void);
