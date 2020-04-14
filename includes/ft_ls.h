@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 13:09:57 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 17:21:12 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_ls
 	int			owner_len;
 	int			group_len;
 	int			size_len;
+	long long	blocks;
 	t_list		*first;
 	int			(*fptr[2])(void*, void*);
 }				t_ls;
@@ -80,7 +81,7 @@ typedef struct	s_ls
 ********************************************************************************
 */
 
-void			ls_open_directories(t_ls *flags, t_list **node, char *dir);
+void			ls_open_directories(t_ls *flags, t_list **node, char *dir, int i);
 void			ls_read_directories(t_list **node, t_ls *flags, DIR *dirp,
 				char *path);
 void			ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i);
@@ -123,7 +124,7 @@ t_list			*ls_find_first(t_list *current);
 
 void			ls_print_current(t_ls *flags, t_list **node);
 void			ls_print_files_del(t_list **node, t_ls *flags, int i);
-void			ls_print_content(t_list *current, t_ls *flags);
+void			ls_print_content(t_list *current, t_ls *flags, int i);
 t_list			**ls_print_not_existing_f(char *av[], size_t *i, t_ls *flags, t_list **node);
 
 #endif

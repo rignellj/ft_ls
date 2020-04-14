@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/04/12 16:19:50 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/14 15:14:06 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC :=	main.c \
 		ls_get_flags.c \
 		ls_print_content.c \
 		ls_print_not_existing_f.c \
-		ls_open_directories.c \
+		ls_open_and_read_directories.c \
 		ls_compare.c \
 		ls_del_current.c \
 		ls_lstadd_linkedlist.c \
