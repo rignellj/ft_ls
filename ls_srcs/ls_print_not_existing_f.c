@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 14:30:49 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 16:39:47 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 17:23:50 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ void		ls_print_files_del(t_list **node, t_ls *f, int i)
 	{
 		if (i && current->content && ((t_file*)current->content)->type != 'd')
 		{
-			ls_print_content(current, f);
+			ls_print_content(current, f, 1);
 			ls_del_current(node, current, f);
 		}
 		else if (!i && current->content)
 		{
-			ls_print_content(current, f);
+			ls_print_content(current, f, current->next ? 0 : 1);
 			f->rec && ((t_file*)current->content)->type == 'd' ? 0
 			: ls_del_current(node, current, f);
 		}
 		current = current->next;
 	}
-	!i ? ft_putchar('\n') : 0;
+	i ? ft_putchar('\n') : 0;
 }
 
 t_list			**ls_print_not_existing_f(char *av[], size_t *i, t_ls *flags, t_list **ret_dirs)
