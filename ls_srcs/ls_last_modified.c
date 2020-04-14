@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:26:57 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/07 16:50:36 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/14 18:03:47 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		*modify_date(char *date, int year_or_hh_mm)
 	join = ft_joindel(ft_strdup(tab_date[2]), tmp);
 	if (year_or_hh_mm)
 	{
-		tmp = ft_add_char(tab_date[4], ' ');
+		tmp = ft_joindel(ft_strdup("  "), ft_strdup(tab_date[4]));
 		ret = ft_joindel(join, tmp);
 	}
 	else
@@ -66,7 +66,7 @@ void			ls_last_modified(struct stat *buf, t_file *f)
 	half_year_in_seconds = 15778476;
 	epoc_time = buf->st_mtime;
 	year_or_hh_mm = FT_ABS((now - epoc_time)) > half_year_in_seconds ? 1 : 0;
-	date = ft_strdup(ctime(&epoc_time));
+	date = ft_strtrim(ctime(&epoc_time));
 	f->last_mod = modify_date(date, year_or_hh_mm);
 	ft_strdel(&date);
 }
