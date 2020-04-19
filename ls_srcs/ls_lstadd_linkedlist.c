@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 14:25:23 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 17:57:56 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 21:34:18 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void		ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i)
 			f->size_len = ft_numlen(buf.st_size);
 		ls_group_owner(&buf, &content, f);
 		ls_last_modified(&buf, &content);
-		
 	}
 	if (f->t)
 		content.epoc = buf.st_mtime;
