@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_current.c                                 :+:      :+:    :+:   */
+/*   ls_print_current_directory.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 15:57:45 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 17:49:03 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 20:51:37 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void		ls_print_current(t_ls *flags, t_list **node)
+void		ls_print_current_directory(t_ls *flags, t_list **node)
 {
 	DIR				*dirp;
 
