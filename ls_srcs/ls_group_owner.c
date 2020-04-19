@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 18:03:03 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 17:31:12 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:30:15 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	ls_group_owner(struct stat *buf, t_file *f, t_ls *flags)
 			flags->owner_len = (int)ft_strlen(f->owner);	
 	}
 	else
-	{
 		if (flags->owner_len < ((int)ft_strlen((f->owner = ft_strdup(uid->pw_name)))))
 			flags->owner_len = (int)ft_strlen(f->owner);
-	}
 	gid = getgrgid(buf->st_gid);
 	if (flags->group_len < ((int)ft_strlen((f->group =
 		ft_strdup(gid->gr_name)))))
