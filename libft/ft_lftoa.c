@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:27:09 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 16:01:23 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/15 18:54:23 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	add_one_or_int(char *dec, long long *num, int minus, int i)
 	}
 }
 
-static void	round(char *dec)
+static void	ft_round(char *dec)
 {
 	size_t	len;
 
@@ -76,7 +76,7 @@ static char	*return_after_point(long double zero_point, int prec)
 		zero_point -= num;
 	}
 	dec[i] = '\0';
-	round(dec);
+	ft_round(dec);
 	if (temp > 0)
 		dec[i - 1] = '\0';
 	return (dec);
