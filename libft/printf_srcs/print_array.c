@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 17:05:25 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/05 15:46:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:04:55 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	print_new_lines(int *len, char **array)
 
 	i = 0;
 	while (array[i])
-		{
-			*len += ft_strlen(array[i]) + 1;
-			ft_putendl(array[i++]);
-		}
+	{
+		*len += ft_strlen(array[i]) + 1;
+		ft_putendl(array[i++]);
+	}
 }
 
 static void	print_spaces(int *len, char **array, t_format *f)

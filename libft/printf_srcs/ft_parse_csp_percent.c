@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:29:55 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:23:53 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:07:09 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 static void	ft_print_address(va_list ap, t_format *f)
 {
 	long long int	address;
-	int				upper;
 	char			*tmp;
 	char			*tmp2;
 
-	upper = 0;
 	address = va_arg(ap, long long int);
 	f->null = address == 0 ? 1 : 0;
 	tmp = ft_itoa_base_u(address, 16, 0);
@@ -67,10 +65,8 @@ static char	ft_handle_char(va_list ap, t_format *f)
 
 int			ft_parse_csp_percent(t_format *f, va_list ap)
 {
-	char	b;
 	int		len;
 
-	b = 0;
 	if (f->format == 'c' || f->format == '%')
 		ft_parse_char((f->format == '%') ? '%' : ft_handle_char(ap, f), f);
 	else if (f->format == 's')

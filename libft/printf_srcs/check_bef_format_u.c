@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 11:29:38 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:22:58 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:06:08 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			check_bef_format_u(t_format *f, unsigned long long print)
 
 	f->null = print == 0 ? 1 : 0;
 	upper_or_len = (f->format == 'X') ? 1 : 0;
-	f->sign = print >= 0 ? '+' : '-';
+	f->sign = '+';
 	if ((!f->len && f->format == 'o'))
 		f->nbr = ft_itoa_base((unsigned)print, 8, 0);
 	else if (f->len && f->format == 'o')

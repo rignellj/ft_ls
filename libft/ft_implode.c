@@ -6,20 +6,20 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:32:13 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:36:09 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:04:40 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_implode(char **s)
+char	*ft_implode(char **s)
 {
 	size_t	i;
 	char	*tmp3;
 	char	*tmp;
 	char	*tmp2;
 	char	*ret;
-	
+
 	if (!s)
 		return (NULL);
 	i = 0;

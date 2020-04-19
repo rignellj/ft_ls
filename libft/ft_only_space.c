@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 19:42:19 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:40:07 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/15 18:57:07 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ char	*ft_only_space(char *s)
 	{
 		while (!ft_isspace(trim[i]))
 			new[j++] = trim[i++];
-			if (!trim[i])
-				break ;
 		new[j++] = ' ';
 		while (ft_isspace(trim[i]) && trim[i])
 			i++;
