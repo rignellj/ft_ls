@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 17:21:12 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:00:59 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define FT_LS_H
 # include <dirent.h>
 # include <sys/stat.h>
-# include <pwd.h>
-# include <grp.h>
-# include <time.h>
 # include "../libft/printf_srcs/includes/ft_printf.h"
 
 /*
@@ -27,7 +24,8 @@
 ********************************************************************************
 */
 
-void			print_current(t_list **node);
+# include <stdlib.h>
+# include <stdio.h>
 
 /*
 ********************************************************************************
@@ -39,8 +37,6 @@ void			print_current(t_list **node);
 
 typedef struct	s_f
 {
-	int			logical_len;
-	int			element_size;
 	int			links;
 	int			size;
 	long		epoc;
@@ -51,8 +47,8 @@ typedef struct	s_f
 	char		*path;
 	char		*group;
 	char		*last_mod;
-	t_list		*head;
-	t_list		*tail;
+	// t_list		*head;
+	// t_list		*tail;
 }				t_file;
 
 typedef struct	s_ls
@@ -69,7 +65,6 @@ typedef struct	s_ls
 	int			group_len;
 	int			size_len;
 	long long	blocks;
-	t_list		*first;
 	int			(*fptr[2])(void*, void*);
 }				t_ls;
 
@@ -81,13 +76,12 @@ typedef struct	s_ls
 ********************************************************************************
 */
 
-void			ls_open_directories(t_ls *flags, t_list **node, char *dir, int i);
-void			ls_read_directories(t_list **node, t_ls *flags, DIR *dirp,
-				char *path);
+void			ls_open_directories(t_ls *f, t_list **node, char *dir, int i);
+void			ls_read_directories(t_list **node, t_ls *f, DIR *d, char *p);
 void			ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i);
 void			ls_del_current(t_list **node, t_list *current, t_ls *flags);
 void			ls_lstdel(t_list **node, t_ls *flags);
-void			ls_error(void);
+void			ls_error(char *path);
 
 /*
 ********************************************************************************
@@ -124,7 +118,8 @@ t_list			*ls_find_first(t_list *current);
 
 void			ls_print_current(t_ls *flags, t_list **node);
 void			ls_print_files_del(t_list **node, t_ls *flags, int i);
-void			ls_print_content(t_list *current, t_ls *flags, int i);
-t_list			**ls_print_not_existing_f(char *av[], size_t *i, t_ls *flags, t_list **node);
+void			ls_print_content(t_list *current, t_ls *flags, int i, int y);
+t_list			**ls_print_not_existing_f(char **av, size_t *i, t_ls *f,
+				t_list **node);
 
 #endif
