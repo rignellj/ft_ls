@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 18:00:59 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 21:34:38 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct	s_f
 	char		*path;
 	char		*group;
 	char		*last_mod;
-	// t_list		*head;
-	// t_list		*tail;
 }				t_file;
 
 typedef struct	s_ls
@@ -116,7 +114,7 @@ t_list			*ls_find_first(t_list *current);
 ********************************************************************************
 */
 
-void			ls_print_current(t_ls *flags, t_list **node);
+void			ls_print_current_directory(t_ls *flags, t_list **node);
 void			ls_print_files_del(t_list **node, t_ls *flags, int i);
 void			ls_print_content(t_list *current, t_ls *flags, int i, int y);
 t_list			**ls_print_not_existing_f(char **av, size_t *i, t_ls *f,
