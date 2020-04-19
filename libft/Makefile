@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:33:40 by jrignell          #+#    #+#              #
-#    Updated: 2020/04/13 16:05:07 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/17 17:35:23 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,12 +81,11 @@ SRCS = ft_isalpha.c \
 	ft_itoa_base.c \
 	ft_itoa_base_u.c \
 	ft_lftoa.c \
-	ft_putnbr_ll_fd.c \
 	ft_implode.c \
 	ft_add_char.c  \
 	ft_only_space.c \
 	ft_lstappend.c \
-	ft_mem_arrfree.c \
+	ft_mem_arrdel.c \
 	ft_joindel.c \
 	ft_strfree.c \
 	ft_swap.c \

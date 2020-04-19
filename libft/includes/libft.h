@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/13 16:02:27 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:03:49 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,6 @@ char				**ft_arraynew(size_t size);
 */
 
 void				ft_putnbr_ull_fd(unsigned long long int n, int fd);
-void				ft_putnbr_ll_fd(long long n, int fd);
 void				ft_bzero(void *s, size_t n);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
@@ -227,7 +226,8 @@ void				ft_print_current_node(t_list **node);
 */
 
 t_list				*ft_mergesort(t_list *node, int (*cmp)(void *, void *));
-void				ft_qsort(char **str, int first, int last, int (*cmp)(void*, void*));
+void				ft_qsort(char **str, int first, int last,
+					int (*cmp)(void*, void*));
 void				ft_bubblesort(char **array);
 
 #endif
