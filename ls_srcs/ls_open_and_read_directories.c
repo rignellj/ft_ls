@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:16:56 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 17:49:56 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 21:43:56 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,15 @@ void		ls_read_directories(t_list **node, t_ls *flags, DIR *dirp,
 	struct dirent	*name;
 	char			*new_path;
 
-	// ft_printf("here before\n");
 	while ((name = readdir(dirp)))
 	{
-		// ft_printf("here 1\n");
 		new_path = join_path(path, name->d_name, flags);
-		// ft_printf("here 2\n");
 		if (flags->a == 1)
 			ls_lstadd_linkedlist(node, flags, new_path, 0);
 		else if (*(name->d_name) != '.')
 			ls_lstadd_linkedlist(node, flags, new_path, 0);
-			// ft_printf("here 3\n");
 	}
-	// ft_printf("here after\n");
-	ft_mergesort(*node, flags->fptr[0]);
+	ft_mergesort(*node, flags->r ? flags->fptr[1] : flags->fptr[0]);
 	*node = ls_find_first(*node);
 	flags->l ? ft_printf("total %lld\n", flags->blocks) : 0;
 	ls_print_files_del(node, flags, 0);
