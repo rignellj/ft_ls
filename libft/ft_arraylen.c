@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 14:26:20 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:35:06 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:02:44 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ size_t	ft_arraylen(const char **arr)
 	size_t	i;
 
 	i = 0;
-	
 	while (arr[i])
 		i++;
 	return (i);

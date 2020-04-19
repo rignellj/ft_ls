@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 19:51:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/12 14:35:49 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:51:17 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_arraynew(size_t size)
 	char	**new;
 	size_t	i;
 
-	if (!(new = (char**)malloc(sizeof(char*) * size + 1)))
+	if (!(new = (char **)malloc(sizeof(*new) * size + 1)))
 		return (NULL);
 	i = 0;
 	while (i < size)
