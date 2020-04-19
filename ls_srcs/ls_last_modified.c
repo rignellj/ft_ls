@@ -6,11 +6,13 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:26:57 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 18:03:47 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:08:18 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+#include <stdlib.h>
+#include <time.h>
 
 static char		*date_without_seconds(char *hh_tt_ss)
 {
@@ -34,8 +36,9 @@ static char		*modify_date(char *date, int year_or_hh_mm)
 	char	*ret;
 	char	*tmp;
 	char	*tmp2;
-	
-	tab_date = ft_strsplit(date, ' ');
+
+	if (!(tab_date = ft_strsplit(date, ' ')))
+		return (NULL);
 	tmp = ft_add_char(tab_date[1], ' ');
 	join = ft_joindel(ft_strdup(tab_date[2]), tmp);
 	if (year_or_hh_mm)
@@ -66,7 +69,8 @@ void			ls_last_modified(struct stat *buf, t_file *f)
 	half_year_in_seconds = 15778476;
 	epoc_time = buf->st_mtime;
 	year_or_hh_mm = FT_ABS((now - epoc_time)) > half_year_in_seconds ? 1 : 0;
-	date = ft_strtrim(ctime(&epoc_time));
+	if (!(date = ft_strtrim(ctime(&epoc_time))))
+		exit(1);
 	f->last_mod = modify_date(date, year_or_hh_mm);
 	ft_strdel(&date);
 }

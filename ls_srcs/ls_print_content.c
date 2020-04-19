@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 21:41:11 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 17:21:37 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/18 14:01:12 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	last_file(t_list *current)
 	return (1);
 }
 
-void	ls_print_content(t_list *current, t_ls *flags, int i)
+void		ls_print_content(t_list *current, t_ls *flags, int i, int y)
 {
 	int		(*print)(const char*, ...);
 
@@ -49,5 +49,6 @@ void	ls_print_content(t_list *current, t_ls *flags, int i)
 	{
 		print("%s", ((t_file*)(current)->content)->name);
 		last_file(current) && i ? ft_putchar('\n') : ft_putstr("    ");
+		y ? ft_putchar('\n') : 0;
 	}
 }

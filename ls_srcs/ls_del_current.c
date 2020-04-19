@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 18:58:52 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/08 18:44:12 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 12:48:52 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void	ls_del_current(t_list **node, t_list *del, t_ls *f)
 	if (f->l)
 	{
 		ft_memdel((void**)&((t_file*)del->content)->last_mod);
-		ft_memdel((void**)&((t_file*)del->content)->mode);
+		ft_memdel((void**)&((t_file*)del->content)->owner);
+		ft_memdel((void**)&((t_file*)del->content)->group);
 	}
+	ft_memdel((void**)&((t_file*)del->content)->mode);
 	ft_memdel((void**)&((t_file*)del->content)->path);
 	ft_memdel((void**)&(del->content));
 	ft_memdel((void**)&del);

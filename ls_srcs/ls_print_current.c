@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 15:57:45 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/11 15:29:02 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:49:03 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void		ls_print_current(t_ls *flags, t_list **node)
 		ls_read_directories(node, flags, dirp, ".");
 	}
 	if (closedir(dirp) == -1)
-		ls_error();
+		ls_error(".");
+	dirp = NULL;
 }

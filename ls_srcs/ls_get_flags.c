@@ -6,11 +6,12 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/11 16:03:22 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/18 11:24:53 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+#include <stdlib.h>
 
 static void	put_functions_to_array(t_ls *flags)
 {
@@ -39,14 +40,16 @@ void		ls_get_flags(t_ls *flags, char *av[], size_t *i, int ac)
 	int		flag;
 
 	ft_bzero(flags, sizeof(t_ls));
-	tmp = ft_strnew(0);
+	if (!(tmp = ft_strnew(0)))
+		exit(1);
 	flag = 0;
 	while (av[*i] && av[*i][0] == '-')
 	{
 		if (!(str = ft_strsub(av[*i], 1, ft_strlen(av[*i]))))
-			ls_error();
+			exit(1);
 		str = ft_joindel(tmp, str);
-		tmp = ft_strdup(str);
+		if (!(tmp = ft_strdup(str)))
+			exit(1);
 		ft_strdel(&str);
 		(*i)++;
 		flag = 1;

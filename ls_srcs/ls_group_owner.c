@@ -6,23 +6,31 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 18:03:03 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/14 13:12:30 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:31:12 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+#include <pwd.h>
+#include <grp.h>
 
-void ls_group_owner(struct stat *buf, t_file *f, t_ls *flags)
+void	ls_group_owner(struct stat *buf, t_file *f, t_ls *flags)
 {
 	struct passwd	*uid;
 	struct group	*gid;
-	
-	uid = getpwuid(buf->st_uid);
-	if (flags->owner_len < ((int)ft_strlen((f->owner = uid->pw_name))))
-		flags->owner_len = (int)ft_strlen(uid->pw_name);
-	// f->owner = uid->pw_name;
+
+	if (!(uid = getpwuid(buf->st_uid)))
+	{
+		if (flags->owner_len < ((int)ft_strlen((f->owner = ft_itoa_base_u(buf->st_uid, 10, 0)))))
+			flags->owner_len = (int)ft_strlen(f->owner);	
+	}
+	else
+	{
+		if (flags->owner_len < ((int)ft_strlen((f->owner = ft_strdup(uid->pw_name)))))
+			flags->owner_len = (int)ft_strlen(f->owner);
+	}
 	gid = getgrgid(buf->st_gid);
-	if (flags->group_len < ((int)ft_strlen((f->group = gid->gr_name))))
+	if (flags->group_len < ((int)ft_strlen((f->group =
+		ft_strdup(gid->gr_name)))))
 		flags->group_len = (int)ft_strlen(gid->gr_name);
-	// f->group = gid->gr_name;
 }
