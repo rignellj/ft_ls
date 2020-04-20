@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_find.c                                          :+:      :+:    :+:   */
+/*   ls_get.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 14:55:03 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 12:33:24 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 11:40:28 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-t_list	*ls_find_first(t_list *current)
+t_list	*ls_get_first(t_list *current)
 {
 	t_list	*first;
 
@@ -26,7 +26,7 @@ t_list	*ls_find_first(t_list *current)
 	return (first);
 }
 
-t_list	*ls_find_last(t_list *current)
+t_list	*ls_get_last(t_list *current)
 {
 	t_list	*last;
 
