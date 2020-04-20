@@ -6,13 +6,13 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 19:10:17 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/17 17:33:27 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 12:03:17 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_list	*merge(t_list *node, t_list *middle, int (*cmp)(void *, void*))
+static t_list	*merge(t_list *node, t_list *middle, int (*cmp)(void *, void *))
 {
 	if (!node)
 		return (middle);
@@ -52,7 +52,7 @@ static t_list	*split_list(t_list *node)
 	return (middle);
 }
 
-t_list			*ft_mergesort(t_list *node, int (*cmp)(void *, void*))
+t_list			*ft_mergesort(t_list *node, int (*cmp)(void *, void *))
 {
 	t_list	*middle;
 
