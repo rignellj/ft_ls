@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 21:34:38 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 13:08:08 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct	s_ls
 	int			group_len;
 	int			size_len;
 	long long	blocks;
-	int			(*fptr[2])(void*, void*);
+	int			(*fptr[1])(void *, void *);
 }				t_ls;
 
 /*
@@ -74,7 +74,7 @@ typedef struct	s_ls
 ********************************************************************************
 */
 
-void			ls_open_directories(t_ls *f, t_list **node, char *dir, int i);
+void			ls_open_directories(t_ls *f, t_list **node, char *dir);
 void			ls_read_directories(t_list **node, t_ls *f, DIR *d, char *p);
 void			ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i);
 void			ls_del_current(t_list **node, t_list *current, t_ls *flags);
@@ -104,7 +104,9 @@ void			ls_get_flags(t_ls *flags, char *av[], size_t *i, int ac);
 
 int				compare_high_low(void *s1, void *s2);
 int				compare_low_high(void *s1, void *s2);
-t_list			*ls_find_first(t_list *current);
+int				compare_low_high_int(void *i1, void *i2);
+t_list			*ls_get_first(t_list *current);
+t_list			*ls_get_last(t_list *current);
 
 /*
 ********************************************************************************

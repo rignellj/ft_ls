@@ -6,7 +6,7 @@
 #    By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/13 18:19:52 by jrignell          #+#    #+#              #
-#    Updated: 2020/04/19 20:51:26 by jrignell         ###   ########.fr        #
+#    Updated: 2020/04/20 11:40:37 by jrignell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC :=	main.c \
 		ls_del_current.c \
 		ls_lstadd_linkedlist.c \
 		ls_print_current_directory.c \
-		ls_find.c \
+		ls_get.c \
 		ls_lstdel.c
 		
 
