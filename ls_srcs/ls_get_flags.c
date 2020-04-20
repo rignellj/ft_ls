@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/18 11:24:53 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 13:00:25 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 static void	put_functions_to_array(t_ls *flags)
 {
-	flags->fptr[0] = &compare_low_high;
-	flags->fptr[1] = &compare_high_low;
+	if (flags->t)
+		flags->fptr[0] = &compare_low_high_int;
+	else
+		flags->fptr[0] = &compare_low_high;
+	// flags->fptr[1] = &compare_high_low;
 }
 
 static void	ls_check_flags(t_ls *flags, char *flag_str)

@@ -6,13 +6,13 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 21:41:11 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/18 14:01:12 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 13:13:49 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-static int	last_file(t_list *current)
+static int	last_file(t_list *current, t_ls *f)
 {
 	t_list	*compare;
 
@@ -23,7 +23,7 @@ static int	last_file(t_list *current)
 	{
 		if (((t_file*)current->content)->type == '-' && compare != current)
 			return (0);
-		current = current->next;
+		current = f->r ? current->prev : current->next;//current = current->next; //current = f->r ? current->prev : current->next;
 	}
 	return (1);
 }
@@ -48,7 +48,7 @@ void		ls_print_content(t_list *current, t_ls *flags, int i, int y)
 	else
 	{
 		print("%s", ((t_file*)(current)->content)->name);
-		last_file(current) && i ? ft_putchar('\n') : ft_putstr("    ");
+		last_file(current, flags) && i ? ft_putchar('\n') : ft_putstr("    ");
 		y ? ft_putchar('\n') : 0;
 	}
 }
