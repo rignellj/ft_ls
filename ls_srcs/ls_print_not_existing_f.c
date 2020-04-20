@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 14:30:49 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 21:42:07 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 13:22:01 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,10 @@ static int	ls_lstat(char *av)
 		return (0);
 }
 
-static void	ls_print_not_existing_files(char **array)
-{
-	int		i;
-
-	i = 0;
-	while (array[i])
-	{
-		ft_printf("ft_ls: %s: No such file or directory\n", array[i]);
-		i++;
-	}
-	ft_mem_arrdel((void**)array);
-}
-
 void		ls_print_files_del(t_list **node, t_ls *f, int i)
 {
 	t_list	*current;
+	t_list	*tmp;
 
 	current = *node;
 	while (current)
@@ -49,9 +37,10 @@ void		ls_print_files_del(t_list **node, t_ls *f, int i)
 		}
 		else if (!i && current->content)
 		{
-			ls_print_content(current, f, current->next ? 0 : 1, 0);
+			tmp = f->r ? current->prev : current->next;
+			ls_print_content(current, f, tmp ? 0 : 1, 0);
 		}
-		current = current->next;
+		current = f->r ? current->prev : current->next;
 	}
 }
 
@@ -67,15 +56,12 @@ t_list		**ls_print_not_existing_f(char *av[], size_t *i,
 	while (av[j])
 	{
 		if (!ls_lstat(av[j]))
-			not_exist = ft_array_push(not_exist, av[j]);
+			ls_error(av[j]);
 		else
 			ls_lstadd_linkedlist(ret_dirs, flags, ft_strdup(av[j]), 1);//protect
 		j++;
 	}
-	ft_bubblesort(not_exist);
-	ls_print_not_existing_files(not_exist);
-	ft_mergesort(*ret_dirs, flags->r ? flags->fptr[1] : flags->fptr[0]);
-	*ret_dirs = ls_find_first(*ret_dirs);
+	*ret_dirs = ft_mergesort(*ret_dirs, flags->fptr[0]);
 	ls_print_files_del(ret_dirs, flags, 1);
 	return (ret_dirs);
 }

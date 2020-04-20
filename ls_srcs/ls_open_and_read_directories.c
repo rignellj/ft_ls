@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:16:56 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/19 21:43:56 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/20 13:08:44 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*join_path(char *path, char *name, t_ls *flags)
 	return (new_path);
 }
 
-static void	ls_flags_zero(t_ls *flags)
+static void	ls_flags_init(t_ls *flags)
 {
 	flags->blocks = 0;
 	flags->group_len = 1;
@@ -54,9 +54,9 @@ static void	ls_flags_zero(t_ls *flags)
 	flags->size_len = 1;
 }
 
-static void	ls_recursive_del(t_list **node, t_ls *f, char *path, int i)
+static void	ls_recursive_del(t_list **node, t_ls *f, char *path)
 {
-	ls_open_directories(f, node, path, i);
+	ls_open_directories(f, node, path);
 	ls_lstdel(node, f);
 }
 
@@ -74,15 +74,14 @@ void		ls_read_directories(t_list **node, t_ls *flags, DIR *dirp,
 		else if (*(name->d_name) != '.')
 			ls_lstadd_linkedlist(node, flags, new_path, 0);
 	}
-	ft_mergesort(*node, flags->r ? flags->fptr[1] : flags->fptr[0]);
-	*node = ls_find_first(*node);
+	*node = ft_mergesort(*node, flags->fptr[0]);
 	flags->l ? ft_printf("total %lld\n", flags->blocks) : 0;
+	*node = flags->r ? ls_get_last(*node) : *node;
 	ls_print_files_del(node, flags, 0);
-	*node = ls_find_first(*node);
-	flags->rec && *node ? ls_recursive_del(node, flags, ((t_file*)(*node)->content)->path, 1) : 0;
+	flags->rec && *node ? ls_recursive_del(node, flags, ((t_file*)(*node)->content)->path) : 0;
 }
 
-void		ls_open_directories(t_ls *flags, t_list **node, char *dir, int i)
+void		ls_open_directories(t_ls *flags, t_list **node, char *dir)
 {
 	DIR		*dirp;
 	t_list	*current;
@@ -91,7 +90,6 @@ void		ls_open_directories(t_ls *flags, t_list **node, char *dir, int i)
 	if ((*node) == NULL)
 		return (ls_lstdel(node, flags));
 	new_list = NULL;
-	i = 0;//delete this i
 	current = *node;
 	if (((t_file*)current->content)->type == 'd' && dont_open(((t_file*)current->content)->path))
 	{
@@ -108,6 +106,6 @@ void		ls_open_directories(t_ls *flags, t_list **node, char *dir, int i)
 			ls_error(dir);
 	}
 	current = current->next;
-	ls_flags_zero(flags);
-	ls_open_directories(flags, &current, current ? ((t_file*)current->content)->path : dir, 1);
+	ls_flags_init(flags);
+	ls_open_directories(flags, &current, current ? ((t_file*)current->content)->path : dir);
 }
