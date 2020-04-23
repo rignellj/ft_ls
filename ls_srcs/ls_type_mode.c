@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 13:41:23 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/22 19:57:21 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 17:28:59 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	regular_symbolic_socket(t_file *f, char *t_m)
 void		ls_type_mode(struct stat *buf, t_file *f)
 {
 	char	*type_mode;
-	
+
 	type_mode = ft_itoa_base(buf->st_mode, 8, 0);
 	if (ft_strlen(type_mode) == 6)
 		regular_symbolic_socket(f, type_mode);

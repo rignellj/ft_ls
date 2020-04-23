@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 14:30:49 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/23 16:42:11 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 17:27:43 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ static int	ls_lstat(char *av)
 }
 
 static void	ls_print_not_existing_files(char **array)
- {
- 	int		i;
+{
+	int		i;
 
- 	i = 0;
- 	while (array[i])
- 	{
- 		ft_printf("ft_ls: %s: No such file or directory\n", array[i]);
- 		i++;
- 	}
- 	ft_mem_arrdel((void**)array);
- }
+	i = 0;
+	while (array[i])
+	{
+		ft_printf("ft_ls: %s: No such file or directory\n", array[i]);
+		i++;
+	}
+	ft_mem_arrdel((void**)array);
+}
 
 void		ls_print_files_del(t_list **node, t_ls *f, int i)
 {
@@ -72,7 +72,7 @@ t_list		**ls_print_not_existing_f(char *av[], size_t *i,
 		if (!ls_lstat(av[j]))
 			not_exist = ft_array_push(not_exist, av[j]);
 		else
-			ls_lstadd_linkedlist(ret_dirs, flags, ft_strdup(av[j]), 1);//protect
+			ls_lstadd_linkedlist(ret_dirs, flags, ft_strdup(av[j]), 1);
 		j++;
 	}
 	ft_bubblesort(not_exist);

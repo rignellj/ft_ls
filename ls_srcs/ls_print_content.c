@@ -6,14 +6,14 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 21:41:11 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/23 13:48:31 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 17:30:18 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 #include <sys/ioctl.h>
 
-static void ls_print_l(t_list *current, t_ls *flags)
+static void	ls_print_l(t_list *current, t_ls *flags)
 {
 	ft_printf("%c%s  %*d %-*s  %-*s  %*d %12s %s",
 		((t_file*)(current)->content)->type,
@@ -32,7 +32,7 @@ static void ls_print_l(t_list *current, t_ls *flags)
 	ft_putchar('\n');
 }
 
-static void	ls_print_aligned(t_list *current, t_ls *flags, struct winsize *w)
+static void	ls_print_aligned(t_list *cur, t_ls *flags, struct winsize *w)
 {
 	t_list	*tmp;
 	int		skip;
@@ -40,13 +40,13 @@ static void	ls_print_aligned(t_list *current, t_ls *flags, struct winsize *w)
 	int		columns;
 	int		over;
 
-	tmp = current;
+	tmp = cur;
 	if ((columns = w->ws_col / (flags->max_name_len + 1)) <= 0)
 		columns = 1;
 	over = flags->num_of_nodes % columns;
 	tmp_skip = flags->num_of_nodes / columns + (over && columns >= 2 ? 1 : 0);
-	ft_printf("%-*s", (flags->max_name_len + 1), ((t_file*)current->content)->name);
-	((t_file*)current->content)->printed = 1;
+	ft_printf("%-*s", (flags->max_name_len + 1), ((t_file*)cur->content)->name);
+	((t_file*)cur->content)->printed = 1;
 	while (tmp && --columns)
 	{
 		skip = tmp_skip;
@@ -54,28 +54,13 @@ static void	ls_print_aligned(t_list *current, t_ls *flags, struct winsize *w)
 			tmp = flags->r ? tmp->prev : tmp->next;
 		if (!tmp)
 			break ;
-		ft_printf("%-*s", flags->max_name_len + 1, ((t_file*)(tmp)->content)->name);
+		ft_printf("%-*s", flags->max_name_len + 1,
+		((t_file*)(tmp)->content)->name);
 		((t_file*)tmp->content)->printed = 1;
 	}
 	ft_putchar('\n');
 }
-/*
-	static int	last_file(t_list *current, t_ls *f)
-	{
-		t_list	*compare;
 
-		if (!current)
-			return (1);
-		compare = current;
-		while (current)
-		{
-			if (((t_file*)current->content)->type == '-' && compare != current)
-				return (0);
-			current = f->r ? current->prev : current->next;
-		}
-		return (1);
-	}
-*/
 void		ls_print_content(t_list *current, t_ls *flags)
 {
 	struct winsize	w;
@@ -88,8 +73,12 @@ void		ls_print_content(t_list *current, t_ls *flags)
 	else
 	{
 		if (flags->r)
-			current->prev ? ft_printf("%-*s", flags->max_name_len + 1, ((t_file*)(current)->content)->name) : ft_printf("%s\n", ((t_file*)(current)->content)->name);
+			current->prev ? ft_printf("%-*s", flags->max_name_len + 1,
+			((t_file*)(current)->content)->name) : ft_printf("%s\n",
+			((t_file*)(current)->content)->name);
 		else
-			current->next ? ft_printf("%-*s", flags->max_name_len + 1, ((t_file*)(current)->content)->name) : ft_printf("%s\n", ((t_file*)(current)->content)->name);
+			current->next ? ft_printf("%-*s", flags->max_name_len + 1,
+			((t_file*)(current)->content)->name) : ft_printf("%s\n",
+			((t_file*)(current)->content)->name);
 	}
 }

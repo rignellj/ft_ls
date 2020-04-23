@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 14:25:23 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/23 16:20:25 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 16:50:38 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void		ls_lstadd_linkedlist(t_list **node, t_ls *f, char *s, int i)
 {
 	t_list		*new_node;
 	t_file		content;
-	
 	struct stat	buf;
 
 	if (lstat(s, &buf) == -1)
