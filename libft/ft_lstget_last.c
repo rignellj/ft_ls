@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bubblesort.c                                    :+:      :+:    :+:   */
+/*   ft_lstget_last.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/06 13:33:08 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/20 14:26:16 by jrignell         ###   ########.fr       */
+/*   Created: 2020/04/21 11:41:38 by jrignell          #+#    #+#             */
+/*   Updated: 2020/04/21 11:44:36 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_bubblesort(char **array)
+t_list	*ft_lstget_last(t_list *current)
 {
-	int		flag;
-	int		i;
+	t_list	*last;
 
-	if (!array)
-		return ;
-	flag = 1;
-	while (flag)
+	last = current;
+	while (last)
 	{
-		flag = 0;
-		i = 0;
-		while (array[i] && array[i + 1])
-		{
-			if (ft_strcmp(array[i], array[i + 1]) > 0)
-			{
-				ft_swap((void**)&array[i], (void**)&array[i + 1]);
-				flag = 1;
-			}
-			i++;
-		}
+		if (!last->next)
+			break ;
+		last = last->next;
 	}
+	return (last);
 }

@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:08:35 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/17 16:03:49 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 13:07:04 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 /*
 ********************************************************************************
 **                                                                            **
-**                         DEFINES                                            **
+**                         MACROS                                             **
 **                                                                            **
 ********************************************************************************
 */
@@ -207,8 +207,12 @@ void				*ft_memalloc(size_t size);
 ********************************************************************************
 */
 
+int					ft_lstiterif(t_list *lst, int (*f)(t_list *elem));
+
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list				*ft_lstget_first(t_list *current);
+t_list				*ft_lstget_last(t_list *current);
 
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);

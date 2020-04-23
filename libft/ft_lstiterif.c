@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bubblesort.c                                    :+:      :+:    :+:   */
+/*   ft_lstiterif.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/06 13:33:08 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/20 14:26:16 by jrignell         ###   ########.fr       */
+/*   Created: 2020/04/23 13:00:44 by jrignell          #+#    #+#             */
+/*   Updated: 2020/04/23 13:04:01 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_bubblesort(char **array)
+int		ft_lstiterif(t_list *lst, int (*f)(t_list *elem))
 {
-	int		flag;
-	int		i;
+	t_list	*ptr;
 
-	if (!array)
-		return ;
-	flag = 1;
-	while (flag)
+	ptr = lst;
+	while (ptr)
 	{
-		flag = 0;
-		i = 0;
-		while (array[i] && array[i + 1])
-		{
-			if (ft_strcmp(array[i], array[i + 1]) > 0)
-			{
-				ft_swap((void**)&array[i], (void**)&array[i + 1]);
-				flag = 1;
-			}
-			i++;
-		}
+		if (!f(ptr))
+			return (0);
+		ptr = ptr->next;
 	}
+	return (1);
 }
