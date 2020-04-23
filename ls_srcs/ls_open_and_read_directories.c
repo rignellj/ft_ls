@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:16:56 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/20 13:08:44 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 12:50:15 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ static char	*join_path(char *path, char *name, t_ls *flags)
 static void	ls_flags_init(t_ls *flags)
 {
 	flags->blocks = 0;
+	flags->num_of_nodes = 0;
 	flags->group_len = 1;
 	flags->owner_len = 1;
 	flags->links_len = 1;
 	flags->size_len = 1;
+	flags->max_name_len = 1;
 }
 
 static void	ls_recursive_del(t_list **node, t_ls *f, char *path)
@@ -75,37 +77,38 @@ void		ls_read_directories(t_list **node, t_ls *flags, DIR *dirp,
 			ls_lstadd_linkedlist(node, flags, new_path, 0);
 	}
 	*node = ft_mergesort(*node, flags->fptr[0]);
-	flags->l ? ft_printf("total %lld\n", flags->blocks) : 0;
-	*node = flags->r ? ls_get_last(*node) : *node;
+	if (flags->r)
+		*node = ft_lstget_last(*node);
 	ls_print_files_del(node, flags, 0);
-	flags->rec && *node ? ls_recursive_del(node, flags, ((t_file*)(*node)->content)->path) : 0;
+	flags->rec && *node ? ls_recursive_del(node, flags, ((t_file*)(*node)->content)->path) : ls_lstdel(node, flags);
 }
 
 void		ls_open_directories(t_ls *flags, t_list **node, char *dir)
 {
 	DIR		*dirp;
-	t_list	*current;
+	t_list	*cur;
 	t_list	*new_list;
 
 	if ((*node) == NULL)
 		return (ls_lstdel(node, flags));
 	new_list = NULL;
-	current = *node;
-	if (((t_file*)current->content)->type == 'd' && dont_open(((t_file*)current->content)->path))
+	cur = *node;
+	if (((t_file*)cur->content)->type == 'd' && dont_open(((t_file*)cur->content)->path))
 	{
+		dir ? ft_putstr("\n") : 0;
 		flags->ac > 1 || flags->rec ?
-		ft_printf("\n%s:\n", ((t_file*)current->content)->path) : 0;
-		if ((dirp = opendir(((t_file*)current->content)->path)))
+		ft_printf("%s:\n", ((t_file*)cur->content)->path) : 0;
+		if ((dirp = opendir(((t_file*)cur->content)->path)))
 		{
 			ls_read_directories(&new_list, flags, dirp,
-			((t_file*)current->content)->path);
+			((t_file*)cur->content)->path);
 			if (closedir(dirp) == -1)
-				ls_error(((t_file*)current->content)->path);
+				ls_error(((t_file*)cur->content)->path);
 		}
 		else
-			ls_error(dir);
+			ls_error(((t_file*)cur->content)->name);
 	}
-	current = current->next;
+	cur = flags->r ? cur->prev : cur->next;
 	ls_flags_init(flags);
-	ls_open_directories(flags, &current, current ? ((t_file*)current->content)->path : dir);
+	ls_open_directories(flags, &cur, cur ? ((t_file*)cur->content)->path : dir);
 }

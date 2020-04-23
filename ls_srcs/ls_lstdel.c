@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 16:47:41 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/17 18:39:13 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/22 21:18:51 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ls_lstdel(t_list **node, t_ls *flags)
 	current = *node;
 	while (current)
 	{
-		tmp = current->next;
+		tmp = flags->r ? current->prev : current->next;
 		if (flags->l)
 		{
 			ft_memdel((void**)&((t_file*)current->content)->last_mod);

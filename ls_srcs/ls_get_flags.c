@@ -6,12 +6,32 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:14:27 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/20 13:00:25 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/22 13:18:27 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 #include <stdlib.h>
+
+static void	ls_check_illegal(char *str)
+{
+	char	*flags;
+	int		i;
+
+	i = 0;
+	flags = "Ralrt";
+	while (str[i])
+	{
+		if (ft_strchr(flags, str[i]) == NULL)
+			{
+				ft_printf("ft_ls: illegal option -- %c\n", str[i]);
+				ft_printf("usage: ft_ls [-Ralrt] [file ...]\n");
+				ft_strdel(&str);
+				exit(1);
+			}
+		i++;
+	}
+}
 
 static void	put_functions_to_array(t_ls *flags)
 {
@@ -24,6 +44,7 @@ static void	put_functions_to_array(t_ls *flags)
 
 static void	ls_check_flags(t_ls *flags, char *flag_str)
 {
+	ls_check_illegal(flag_str);
 	if (ft_strchr(flag_str, 'a'))
 		flags->a = 1;
 	if (ft_strchr(flag_str, 'l'))

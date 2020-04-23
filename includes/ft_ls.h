@@ -6,7 +6,7 @@
 /*   By: jrignell <jrignell@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:38:31 by jrignell          #+#    #+#             */
-/*   Updated: 2020/04/20 13:08:08 by jrignell         ###   ########.fr       */
+/*   Updated: 2020/04/23 13:14:05 by jrignell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ typedef struct	s_f
 {
 	int			links;
 	int			size;
+	int			printed;
 	long		epoc;
 	char		type;
+	char		*symlink;
 	char		*name;
 	char		*mode;
 	char		*owner;
@@ -51,6 +53,7 @@ typedef struct	s_f
 
 typedef struct	s_ls
 {
+	int			num_of_nodes;
 	int			a;
 	int			l;
 	int			not;
@@ -58,6 +61,7 @@ typedef struct	s_ls
 	int			rec;
 	int			t;
 	int			ac;
+	int			max_name_len;
 	int			links_len;
 	int			owner_len;
 	int			group_len;
@@ -97,7 +101,7 @@ void			ls_get_flags(t_ls *flags, char *av[], size_t *i, int ac);
 /*
 ********************************************************************************
 **                                                                            **
-**                         SORT/CMP FUNCTIONS                                 **
+**                         CMP FUNCTIONS                                      **
 **                                                                            **
 ********************************************************************************
 */
@@ -105,8 +109,7 @@ void			ls_get_flags(t_ls *flags, char *av[], size_t *i, int ac);
 int				compare_high_low(void *s1, void *s2);
 int				compare_low_high(void *s1, void *s2);
 int				compare_low_high_int(void *i1, void *i2);
-t_list			*ls_get_first(t_list *current);
-t_list			*ls_get_last(t_list *current);
+int				ls_iter_until(t_list *elem);
 
 /*
 ********************************************************************************
@@ -118,7 +121,7 @@ t_list			*ls_get_last(t_list *current);
 
 void			ls_print_current_directory(t_ls *flags, t_list **node);
 void			ls_print_files_del(t_list **node, t_ls *flags, int i);
-void			ls_print_content(t_list *current, t_ls *flags, int i, int y);
+void			ls_print_content(t_list *current, t_ls *flags);
 t_list			**ls_print_not_existing_f(char **av, size_t *i, t_ls *f,
 				t_list **node);
 
